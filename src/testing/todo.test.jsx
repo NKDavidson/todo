@@ -13,3 +13,16 @@ test('adds a new task', () => {
   fireEvent.click(screen.getByText(/add/i));
   expect(screen.getByText('New Task')).toBeInTheDocument();
 });
+test('renders the app with initial elements', () => {
+    render(<App />);
+    expect(screen.getByPlaceholderText(/add a new task/i)).toBeInTheDocument();
+    expect(screen.getByText(/add/i)).toBeInTheDocument();
+  });
+  test('all in new task', () => {
+    render(<App />);
+    fireEvent.change(screen.getByPlaceholderText(/add a new task/i), { target: { value: 'All' } });
+    fireEvent.click(screen.getByText(/all/i));
+    expect(screen.getByText('All')).toBeInTheDocument();
+  });
+
+
